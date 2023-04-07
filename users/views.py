@@ -9,10 +9,10 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect('home') #회원 가입 후 로그인 화면으로
+            return redirect('login') #회원 가입 후 로그인 화면으로
     else:
         form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'users/signup.html', {'form': form})
 
 #로그인 기능
 def user_login(request):
@@ -24,12 +24,12 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('users/home.html')#로그인 성공시
     else:
         form = AuthenticationForm()
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'users/login.html', {'form': form})
 
 #로그아웃 기능
 def user_logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('users/home.html')

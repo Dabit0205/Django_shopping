@@ -1,2 +1,7 @@
-<!-- templates/tweet/home.html -->
-{% extends 'base.html' %}
+{% if user.is_authenticated %}
+  <a href="{% url 'logout' %}">로그아웃</a>
+  <a href="{% url '상품등록_페이지_URL' %}">상품 등록</a>
+{% else %}
+  <a href="{% url 'login' %}">로그인</a>
+  <a href="{% url 'signup' %}">회원 가입</a>
+{% endif %}
